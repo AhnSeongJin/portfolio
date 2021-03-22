@@ -1,0 +1,213 @@
+h2 {
+    margin: 30px 0 0;
+}
+h3 {
+    margin-top: 50px;
+}
+
+
+.inputItem {
+    width: 100%;
+    padding: 12px 30px;
+    border-bottom: 1px solid rgb(145, 25, 25);
+    box-sizing: border-box;
+}
+.inputItem:nth-child(1) {
+    border-top: 4px solid #000;
+    margin-top: 20px;
+}
+/* 입력 항목 */
+label {
+    font-weight: bold;
+    width: 120px;
+    display: inline-block;
+    vertical-align: middle;
+}
+/* 입력창 공통 */
+.input {
+    width: 340px;
+    height: 40px;
+    padding-left: 5px;
+}
+.inputItem p {
+    display: block;
+    font-size: 0.9rem;
+    color: #717171;
+    margin: 10px 0 0 120px;
+}
+/*이메일*/
+.inputItem .email {
+    width: 240px;
+}
+/*이메일 선택*/
+.inputItem .select {
+    width: 200px;
+    height: 44px;
+    vertical-align: top;
+}
+.inputItem .emailDetail {
+    display: inline;
+}
+/*휴대전화*/
+#timeZone{
+	margin-left:120px;
+}
+
+
+/* 주소검색 */
+#add_label {
+    vertical-align: top;
+    margin-top: 10px;
+}
+#address_area {
+    display: inline-block;
+}
+#postcode {
+    width: 150px;
+    height: 40px;
+    padding-left: 5px;
+}
+#address {
+    width: 340px;
+    height: 40px;
+    margin-top: 5px;
+    padding-left: 5px;
+}
+.addInput {
+    width: 180px;
+    height: 40px;
+    margin-top: 5px;
+    padding-left: 5px;
+}
+
+/* 버튼 공통 */
+.btn {
+    display: inline-block;
+    padding: 0 20px;
+    height: 44px;
+    font-size: 1em;
+    vertical-align: top;
+    background-color: #434343;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 140px;
+}
+
+/* 이메일 수신여부 */
+#email_list {
+    display: inline-block;
+}
+#email_list li {
+    display: inline;
+}
+
+.desc {
+    display: inline-block;
+    font-size: 0.5em;
+}
+.mailLabel {
+    width: auto;
+}
+.inputItem input[type="radio"] {
+    width: 21px;
+    height: 21px;
+    vertical-align: middle;
+}
+
+/* 가입완료 버튼영역 */
+.boxBtn {
+    text-align: center;
+    margin-top: 30px;
+}
+button {
+    width: 220px;
+    height: 70px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.join {
+    background-color: gray;
+    color: #fff;
+}
+.cancel {
+    background-color: lightgray;
+}
+
+/*--------반응형 ~1024px--------*/
+@media screen and (max-width:1024px){
+    label {
+        margin: 0;
+        width: 90px;
+        font-size: 0.8rem;
+    }
+    .input {
+        width: calc(100% - 105px);
+        height: 35px;
+    }
+    .inputItem {
+        padding: 8px 10px;
+    }
+    .btn {
+        width: calc(100% - 96px);
+        display: block;
+        margin: 5px 0 0 94px;
+        padding: 0 10px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 14px;
+    }
+    .inputItem .desc {
+        margin: 5px 0 0 95px;
+        font-size: 0.8rem;
+    }
+    .inputItem .email {
+        width: calc((100% - 135px)/2);
+    }
+    .inputItem .select {
+        width: calc(100% - 96px);
+        height: 35px;
+        margin: 5px 0 0 94px;
+    }
+    /*주소*/
+    #address_area {
+        width: calc(100% - 96px);
+    }
+    /*주소에 입력창 높이 공통*/
+    #address_area input {
+        height: 35px;
+        float: left;
+    }
+    /*우편번호 찾기버튼*/
+    #address_area .btnAddr {
+        width: 40%;
+        height: 39px;
+        margin: 0 0 0 2px;
+        float: left;
+    }
+    /*우편번호 입력창*/
+    #postcode {
+        width: 35%;
+    }
+    /*주소 입력창*/
+    #address {
+        width: calc(100% - 10px)
+    }
+    .addInput {
+        width: calc((100% - 20px)/2);
+    }
+    .addInput:last-child {
+        float: right;
+        margin-left: 2px;
+    }
+    button {
+        width: 40%;
+        height: 40px;
+        font-size: 1rem;
+    }
+	#timeZone{
+		margin-left:100px;
+	}
+}
+/*버튼바꾸는거부터 해야함.*/

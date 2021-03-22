@@ -1,0 +1,131 @@
+article {
+    width: 100%;
+}
+/*탭메뉴*/
+#tab {
+    width: 100%;
+    height: 50px;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+#tab li {
+    display: inline-block;
+    width: 100px;
+    line-height: 50px;
+}
+
+/*--------공지 리스트--------*/
+.listHead {
+    margin-top: 100px;
+}
+/*타이틀 제목 왼쪽으로 붙이기*/
+h3 {
+    float: left;
+}
+/*검색영역 오른쪽으로 붙이기*/
+.listHead .inputItem {
+    float: right;
+}
+/*검색 리스트 선택창*/
+.listHead select {
+    width: 80px;
+    height: 27px;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+/*검색어 입력창*/
+.listHead #search_val {
+    width: 225px;
+    height: 25px;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+/*찾기 아이콘*/
+.listHead .ir {
+    background-position: -300px -60px;
+    width: 27px;
+    height: 27px;
+    border: none;
+    background-color: #fff;
+}
+
+/*--------자주묻는 질문 테이블--------*/
+.qnaTbl {
+    width: 100%;
+    margin-top: 30px;
+    border-top: 4px solid #ecb800;
+    /*tr에 border속성 사용하기위해*/
+    border-collapse:collapse;
+}
+.qnaTbl thead th {
+    padding: 19px 0 13px;
+}
+.qnaTbl tr {
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+    height: auto;
+}
+/*리스트 크기 패딩으로 크기조절*/
+.qnaTbl tbody tr td {
+    padding: 13px 0;
+}
+/*가로 목록 아래만 진하게*/
+.qnaTbl thead tr {
+    border-bottom: 2px solid #ccc;
+}
+/*제목 제외하고 글씨 가운데로*/
+.qnaTbl tbody tr td{
+    text-align: center;
+}
+/*제목 리스트만 글씨 왼쪽으로*/
+.qnaTbl tbody tr td:nth-child(2){
+    padding: 0 20px;
+    text-align: left;
+}
+.news { color: #e4a823; }
+.press { color: #c96f19; }
+
+.qnaTbl tbody .tl {
+    cursor: pointer;
+}
+
+/*--------반응형 ~1024px--------*/
+@media screen and (max-width:1024px){
+
+    /*공지 리스트*/
+    /**/
+    /*검색어 입력창*/
+    .listHead #search_val {
+        width: 160px;
+        height: 25px;
+        border: none;
+        border-bottom: 1px solid #000;
+    }
+    /*찾기 아이콘*/
+    .listHead .ir {
+        width: 25px;
+        height: 25px;
+        background-position: -780px -120px;
+    }
+    /*번호 없애기*/
+    .qnaTbl thead tr th:first-child{
+        display: none;
+    }
+    .qnaTbl tbody tr td:first-child{
+        display: none;
+    }
+    /*조회수 없애기*/
+    .qnaTbl thead tr th:last-child{
+        display: none;
+    }
+    .qnaTbl tbody tr td:last-child{
+        display: none;
+    }
+    .qnaTbl tbody tr td:nth-child(2){
+        width: 100%;
+        font-size: 0.8rem;
+    }
+}
+
+
+

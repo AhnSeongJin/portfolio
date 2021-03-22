@@ -1,0 +1,207 @@
+/*정보 설명 영역*/
+dl {
+    width: 35%;
+    float: left;
+}
+dt {
+    float: left;
+    width: 120px;
+    padding-bottom: 13px;
+}
+dd {
+    float: left;
+    /* calc() - 속성값을 사칙연산으로 정할 수 있게 하는 함수 ('-'할때 좌우 띄어쓰기 필수!) */
+    width: calc(100% - 120px);
+    padding-bottom: 13px;
+    color: #8e8e8e;
+}
+/*설명 영역 큰틀*/
+.projectInfo {
+    width: 100%;
+    margin-top: 100px;
+}
+/*오른쪽 설명글*/
+.frame {
+    float: right;
+    width: 50%;
+    color: #666;
+}
+/*오른쪽 설명글 제목부분 글씨 진하게*/
+.frame p:first-child { font-weight: bold; }
+/*clear fix*/
+.projectInfo::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* 프로젝트 리스트 영역 */
+.projectList {
+    display: block;
+    width: 100%;
+    margin-top: 100px;
+    white-space: nowrap;
+}
+/* clear fix */
+.projectList::after {
+    content: "";
+    display: block;
+    clear: left;
+}
+.projectList > li {
+    display: block;
+    /*마진만큼 빼고 한줄에 놓을 리스트 수만큼 나누기('-'할때 좌우 띄어쓰기 필수!)*/
+    width: calc((100% - 30px)/4);
+    margin-left: 10px;
+    height: 12.5vw;
+    float: left;
+    /*원래 페이지 이동이라서*/
+    cursor: pointer;
+}
+/*첫번째 리스트는 왼쪽 마진 없애기*/
+.projectList > li:first-child {
+    margin-left: 0;
+}
+/*2020.07.04 추가*/
+
+/*li에 꽉차게 하고 포지션 및 텍스트 가운데*/
+figure {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+	padding:10px;
+	box-sizing:border-box;
+}
+
+/*리스트에 들어가는 이미지*/
+img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+}
+
+figcaption{
+    width:100%;
+    height:100%;
+    border:1px solid #fff;
+}
+
+/*프로젝트 설명글*/
+.desc {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    padding: 0 30px;
+    color: #fff;
+    font-size: 21px;
+    font-weight: 700;
+    white-space: normal;
+    box-sizing: border-box;
+    /*포지션 가운데 위치하고 트랜스폼으로 Y축으로 위치 조정*/
+    transform: translateY(-50%);
+}
+/*글 아래 노란색 밑줄*/
+.desc:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 40px;
+    height: 3px;
+    margin-left: -20px;
+    background: #ecb800;
+}
+
+/*2020.07.04 변경*/
+/*기본*/
+.project_01{
+    background:url(../images/project/project01.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+.project_02{
+    background:url(../images/project/project02.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+.project_03{
+    background:url(../images/project/project03.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+.project_04{
+    background:url(../images/project/project04.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+/*마우스 호버시*/
+.project_01:hover{
+    background:url(../images/project/project01_over.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+.project_02:hover{
+    background:url(../images/project/project02_over.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+.project_03:hover{
+    background:url(../images/project/project03_over.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+.project_04:hover{
+    background:url(../images/project/project04_over.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+
+figure:hover figcaption{
+    background:#fff;
+    border:0px;
+    transform:scale(0.9); /*축소*/
+    transition: all 1s ease; /*높이,너비 1초로 ease(기본값)*/
+}
+figure:hover figcaption .desc{color:#333;}
+
+
+
+
+/*반응형 ~1024px*/
+@media screen and (max-width:1024px){
+    .projectInfo { margin-top: 50px; }
+    .projectInfo .info {
+        width: 100%;
+        font-size: 0.8em;
+        margin-bottom: 20px;
+    }
+    .projectInfo .frame {
+        width: 100%;
+    }
+    /*프로젝트 리스트*/
+    .projectList > li {
+        /*마진만큼 빼고 한줄에 놓을 리스트 수만큼 나누기('-'할때 좌우 띄어쓰기 필수!)*/
+        width: calc((100% - 20px)/2);
+        margin: 0 0 20px 20px;
+    }
+    /*왼쪽 첫번째 리스트는 왼쪽 마진 없애기*/
+    .projectList > li:nth-child(2n-1) {
+        margin-left: 0;
+    }
+    .desc {
+        top: 50%;
+        /*포지션 가운데 위치하고 트랜스폼으로 Y축으로 위치 조정*/
+        transform: translateY(-50%);
+        font-size: 1em;
+    }
+}

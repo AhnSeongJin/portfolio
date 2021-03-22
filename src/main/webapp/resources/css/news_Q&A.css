@@ -1,0 +1,289 @@
+article {
+    width: 100%;
+}
+
+.qnaWrite {
+    width: 100%;
+}
+
+.bxForm {
+    border-top: 1px solid #000;
+    margin-top: 10px;
+}
+/*밑에 구분줄과 패딩값*/
+.bxForm .inputItem {
+    padding: 12px 20px 12px 30px;
+    border-bottom: 1px solid #eee;
+}
+/*입력창 기본*/
+.bxForm .inputItem input {
+    width: calc(100% - 150px);
+    padding-left: 10px;
+    border: 1px solid #eee;
+    height: 40px;
+    box-sizing: border-box;
+}
+/*입력란 제목*/
+.bxForm .inputItem strong {
+    display: inline-block;
+    width: 120px;
+    font-size: 16px;
+    font-weight: 700;
+    vertical-align: top;
+}
+/*선택창 공통*/
+.bxForm .inputItem select {
+    width: 240px;
+    height: 40px;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    padding: 5px 10px;
+}
+/*이메일 도메인 선택창에 마진 넣기*/
+.bxForm .iEmailDetail select {
+    margin-left: 5px;
+    vertical-align: middle;
+}
+/*이메일 입력창들 영역*/
+.bxForm .iEmail {
+    display: inline-block;
+}
+/*이메일 입력창 크기*/
+.bxForm .iEmailDetail input {
+    width: 220px;
+}
+/*질문 내용 입력창*/
+.bxForm .inputItem textarea {
+    width: calc(100% - 150px);
+    height: 200px;
+    border: 1px solid #eee;
+    padding: 10px;
+    box-sizing: border-box;
+}
+/*Q&A 버튼 영역*/
+.bxBtn {
+    text-align: center;
+    margin-top: 50px;
+}
+/*버튼 공통*/
+.bxBtn .btnQna {
+    width: 215px;
+    height: 65px;
+    line-height: 65px;
+    font-size: 16px;
+    display: inline-block;
+    cursor: pointer;
+}
+/*확인버튼*/
+.bxBtn .btnGray {
+    background-color: #545454;
+    color: #fff;
+    border: 1px solid #272727
+}
+/*취소버튼*/
+.bxBtn .btnSilver {
+    background-color: #f3f3f3;
+    color: #565656;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/*--------자주묻는 질문 영역--------*/
+.listHead {
+    margin-top: 100px;
+}
+/*타이틀 제목 왼쪽으로 붙이기*/
+h3 {
+    float: left;
+}
+/*검색영역 오른쪽으로 붙이기*/
+.listHead .inputItem {
+    float: right;
+}
+/*검색 리스트 선택창*/
+.listHead select {
+    width: 80px;
+    height: 27px;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+/*검색어 입력창*/
+.listHead #search_val {
+    width: 225px;
+    height: 25px;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+/*찾기 아이콘*/
+.listHead .ir {
+    background-position: -300px -60px;
+    width: 27px;
+    height: 27px;
+    border: none;
+    background-color: #fff;
+}
+
+/*자주묻는 질문 테이블*/
+.qnaTbl {
+    width: 100%;
+    margin-top: 30px;
+    border-top: 4px solid #ecb800;
+    /*tr에 border속성 사용하기위해*/
+    border-collapse:collapse;
+}
+.qnaTbl thead th {
+    padding: 19px 0 13px;
+}
+.qnaTbl tr {
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+    height: auto;
+}
+/*리스트 크기 패딩으로 크기조절*/
+.qnaTbl tbody tr td {
+    padding: 13px 0;
+}
+/*가로 목록 아래만 진하게*/
+.qnaTbl thead tr {
+    border-bottom: 2px solid #ccc;
+}
+/*번호, 조회수만 가운데로*/
+.qnaTbl tbody tr td:nth-child(2n-1){
+    text-align: center;
+}
+.qnaTbl tbody tr td:nth-child(2){
+    padding-left: 40px;
+}
+.qnaTbl tbody .question:hover {
+    cursor: pointer;
+}
+
+
+/*자주묻는 질문 답변 창*/
+.qnaTbl tbody .answer{border-bottom:0px;}
+.qnaTbl tbody .answer td{
+    padding:0px;
+}
+/*답변부분 처음에는 안보이기*/
+.qnaTbl tbody .answer .boxAnswer {
+    background-color: #f8f8f8;
+    padding: 40px 10%;
+    font-size: 0.9em;
+    color: #8e8e8e;
+    text-align: left;
+	display:none;
+}
+
+
+
+/*qnaGuide*/
+.qnaGuide {
+    width: 100%;
+    text-align: center;
+    background-color: #f8f8f8;
+    margin: 60px 0 80px;
+    padding: 40px 0;
+}
+.qnaGuide ul {
+    margin-top: 30px;
+}
+.qnaGuide ul li {
+    display: inline-block;
+}
+.qnaGuide ul li:last-child {
+    margin-left: 100px;
+}
+
+/*--------반응형 ~1024px--------*/
+@media screen and (max-width:1024px){
+    /*입력창 공통*/
+    .bxForm .inputItem input {
+        width: calc(100% - 100px);
+        height: 35px;
+    }
+    /*질문유형 선택창*/
+    .inputItem #q_type {
+        width: calc(100% - 100px);
+    }
+    /*선택창 공통*/
+    .bxForm .inputItem select {
+        width: 100%;
+        height: 35px;
+    }
+    /*이메일 입력창들 영역*/
+    .bxForm .iEmail {
+        width: calc(100% - 100px);
+    }
+    /*이메일 입력창*/
+    .bxForm .iEmailDetail input {
+        width: 220px;
+    }
+    /*이메일 도메인 선택창에 마진 넣기*/
+    .bxForm .iEmailDetail select {
+    margin: 10px 0 0;
+    }
+    /*리스트 이름*/
+    .bxForm .inputItem strong {
+        width: 90px;
+    }
+    /*질문 내용 입력창*/
+    .bxForm .inputItem textarea {
+        width: calc(100% - 100px);
+        height: 200px;
+        border: 1px solid #eee;
+        box-sizing: border-box;
+    }
+    /*버튼 변경*/
+    .bxBtn .btnQna {
+        width: 35%;
+        height: 50px;
+        line-height: 50px;
+        font-size: 0.8rem;
+        display: inline-block;
+    }
+
+    /*자주묻는 질문 영역*/
+    .qnaTbl tbody .answer .tl {
+        display: block; /*번호,조회수랑 같이 안보이는 것 때문에 따로 지정*/
+    }
+
+    /**/
+    /*검색어 입력창*/
+    .listHead #search_val {
+        width: 160px;
+        height: 25px;
+        border: none;
+        border-bottom: 1px solid #000;
+    }
+    /*찾기 아이콘*/
+    .listHead .ir {
+        width: 25px;
+        height: 25px;
+        background-position: -780px -120px;
+    }
+    /*번호,조회수 없애기*/
+    .qnaTbl thead tr th:nth-child(2n-1){
+        display: none;
+    }
+    .qnaTbl tbody tr td:nth-child(2n-1){
+        display: none;
+    }
+    .qnaTbl tbody tr td:nth-child(2){
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    /*qnaGuide*/
+    .qnaGuide {
+        padding: 40px 20px;
+        box-sizing: border-box;
+    }
+    .qnaGuide ul li:last-child {
+        margin-left: 0;
+        display: block;
+    }
+
+}
+
+
+

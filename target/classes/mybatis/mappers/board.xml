@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+	<resultMap id="articlesResult" type="articleVO">
+		<result property="depth" column="depth" />
+		<result property="articleNO" column="article_no" />
+		<result property="parentNO" column="parent_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="writeDate" column="write_date" />
+		<result property="imageFileName" column="image_file_name" />
+		<result property="id" column="mem_id" />
+	</resultMap>
+	<resultMap id="pagingResult" type="pagingVO">
+		<result property="depth" column="depth" />
+		<result property="articleNO" column="article_no" />
+		<result property="parentNO" column="parent_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="writeDate" column="write_date" />
+		<result property="imageFileName" column="image_file_name" />
+		<result property="id" column="mem_id" />
+		<result property="recNum" column="recNum" />
+	</resultMap>
+
+	<resultMap id="imgResult" type="imageVO">
+		<result property="imageFileNO" column="image_file_no" />
+		<result property="articleNO" column="article_no" />
+		<result property="imageFileName" column="image_file_name" />
+	</resultMap>
+
+<!-- 페이징 전
+	<select id="selectAllArticlesList" resultMap="articlesResult">
+    <![CDATA[
+      SELECT level, article_no, parent_no, title, content, write_date, image_file_name, mem_id AS id
+      FROM t_board
+      START WITH  parent_no=0
+      CONNECT BY PRIOR article_no=parent_no 
+      ORDER SIBLINGS BY article_no DESC		
+    ]]>
+	</select>
+-->
+	
+	<!-- 페이징 처리 -->
+	<select id="selectAllArticlesList" parameterType="java.util.Map" resultType="pagingVO" resultMap="pagingResult">
+    <![CDATA[
+    SELECT * FROM(
+	    SELECT ROWNUM as recNum,
+	    depth,
+	    article_no,
+	    parent_no,
+	    title,
+	    content,
+	    id,
+	    write_date
+	    FROM(
+	        SELECT LEVEL as depth,
+	                article_no,
+	                parent_no,
+	                title,
+	                content,
+	                mem_id AS id,
+	                write_date
+	        FROM t_board
+	        START WITH parent_no=0
+	        CONNECT BY PRIOR article_no=parent_no
+	        ORDER SIBLINGS BY article_no DESC
+	        )
+	    )
+	WHERE 
+	recNum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
+    ]]>
+	</select>
+	
+	<select id="selectTotArticles" resultType="int">
+	<![CDATA[
+		SELECT count(*) FROM t_board
+	]]>
+	</select>
+	
+
+	<!--단일이미지 추가 -->
+	<insert id="insertNewReply" parameterType="java.util.Map"> 
+		<!-- articleNO=원글 번호(form에서 넘어온 값), replyArticleNO=답변글의 글번호(selectNewArticleNO로 얻어온 값 -->
+		<![CDATA[
+			INSERT into t_board(article_no, parent_no, title, content, image_file_name, mem_id) 
+			VALUES(#{replyArticleNO}, #{articleNO}, #{title}, #{content}, #{imageFileName}, #{id}) 
+		]]>
+	</insert>
+	
+	<!-- 단일 이미지 보기 -->
+
+	<select id="selectNewArticleNO" resultType="int">
+		<![CDATA[
+			SELECT  nvl(max(article_no), 0) + 1 from t_board		
+		]]>
+	</select>
+
+	<select id="selectArticle" resultType="articleVO" parameterType="int"
+		resultMap="articlesResult">
+    <![CDATA[
+      SELECT * from t_board
+      where article_no = #{articleNO}		
+    ]]>
+	</select>
+
+	<update id="updateArticle" parameterType="java.util.Map">
+		update t_board
+		set title=#{title}, content=#{content}
+		where article_no=#{articleNO}
+	</update>
+
+	<update id="updateImage" parameterType="java.util.Map">
+		<foreach item="item" collection="list" open="" separator=" " close="" index="index">
+			UPDATE
+			t_image_file
+			SET image_file_no = #{item.imageFileNO}
+			,image_file_name = #{item.imageFileName}
+			,article_no = #{item.articleNO}
+			,reg_date = sysdate
+			where article_no=#{articleNO}
+		</foreach>
+	</update>
+
+	<delete id="deleteImage" parameterType="java.util.Map">
+    <![CDATA[
+      delete from t_image_file
+      where article_no = #{articleNO} and image_file_name = #{imageFileName}
+    ]]>
+	</delete>
+
+	<delete id="deleteArticle" parameterType="int">
+    <![CDATA[
+      delete from t_board
+      where article_no in (
+         SELECT article_no FROM  t_board
+         START WITH article_no = #{articleNO}
+         CONNECT BY PRIOR  article_no = parent_no )
+    ]]>
+	</delete>
+
+	<!--다중 이미지 추가 SQL문 -->
+	<insert id="insertNewArticle" parameterType="java.util.Map"> 
+		<![CDATA[ 
+			insert into t_board(article_no, mem_id, title, content, image_file_name) 
+			values(#{articleNO}, #{id}, #{title}, #{content}, null) 
+		]]>
+	</insert>
+
+	<insert id="insertNewImage" parameterType="java.util.Map">
+		<foreach item="item" collection="list" open="INSERT ALL" separator=" "
+			close="SELECT * FROM DUAL">
+			INTO t_image_file(image_file_no, image_file_name,
+			article_no, reg_date) VALUES
+			(#{item.imageFileNO},
+			#{item.imageFileName}, #{item.articleNO}, sysdate)
+		</foreach>
+	</insert>
+	<!--//다중 이미지 추가 SQL문 -->
+
+	<!-- 다중 이미지 가져오는 SQL문 -->
+	<select id="selectNewImageFileNO" resultType="int">
+    <![CDATA[
+      SELECT  nvl(max(image_file_no),0) from t_image_file		
+    ]]>
+	</select>
+
+
+	<select id="selectImageFileList" resultMap="imgResult" parameterType="int">
+    <![CDATA[
+      SELECT * from t_image_file
+      where article_no=#{articleNO}	
+    ]]>
+	</select>
+	<!-- //다중 이미지 가져오는 SQL문 -->
+
+</mapper>

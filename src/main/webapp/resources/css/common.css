@@ -1,0 +1,408 @@
+@charset "utf-8";
+/* reset */
+* {margin: 0 auto; padding: 0;}
+ol,ul,li {list-style: none;}
+a {outline: 0; text-decoration: none; color: #000;}
+img {vertical-align: top; border: 0;}
+fieldset {border: none;}
+
+#wrap{
+    background-color: #fff;
+    width: auto;
+    height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -0.5px;
+    line-height: 1.57;
+    font-size: 16px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/*메인에서 토글 완성하고 공통으로 추후 공통으로 옮기기*/
+
+/* ----------GNB영역---------- */
+
+header{
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+}
+/*헤더 로고*/
+#logo {
+    position: absolute;
+    left: 50px;
+    top: 25px;
+}
+/*헤더 메인메뉴*/
+#main_menu {
+    width: auto;
+    height: 100%;
+    position: absolute;
+    right: 330px;
+    line-height: 100px;
+}
+#main_menu > ul > li {
+    float: left;
+    margin-left: 35px;
+}
+/*첫번째만 왼쪽마진 없애기*/
+#main_menu> ul > li:nth-child(1) {
+    margin-left: 0;
+}
+#main_menu> ul > li > a {
+    font-weight: 700;
+}
+/*메인메뉴 토글 사이트맵*/
+#sitemap_active {
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 100%;
+    background-color: #fff;
+    display: none;
+    z-index:999;
+    padding: 0 50px 50px;
+    box-sizing: border-box;
+}
+
+.slide_off{display:none; }
+.slide_on{display:block !important;}
+
+/*사이트맵 안에 메뉴*/
+#sitemap_active ul{
+    width: calc(100%/6);
+    float: left;
+    text-align: center;
+    border-right: 1px solid #888;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 0 5px;
+}
+/*마지막 메뉴 오른쪽 선 없애기*/
+#sitemap_active ul:last-child{
+    border-right: none;
+}
+/*대메뉴만 글씨조정*/
+#sitemap_active ul > a{
+    margin-bottom: 50px;
+    font-size: 1.5em;
+}
+/*대메뉴 밑에 선처럼 보이기*/
+#sitemap_active ul div{
+    width: 30px;
+    border: 2px solid #ecb800;
+    margin-bottom: 10px;
+    /* transform: translateY(-35px); */
+}
+
+/*사용자 메뉴*/
+#user_menu {
+    width: auto;
+    position: absolute;
+    right: 120px;
+    top: 42%;
+}
+.user > li {
+    float: left;
+    padding: 0 10px;
+    font-size: 12px;
+    position: relative;
+}
+/*구분선*/
+.user > li::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 8px;
+    background-color: #ccc;
+    top: 40%;
+    right: 0;
+}
+/*마지막 구분선 없애기*/
+.user > li:nth-child(3)::after {
+    width: 0;
+}
+/*미니 메뉴*/
+#mini_menu {
+    width: auto;
+    position: absolute;
+    right: 50px;
+    top: 42%;
+}
+#mini_menu > #mini > li{
+    float: left;
+}
+#mini_menu #btn_top_search {
+    display: block;
+    width: 20px;
+    height: 16px;
+    background-position: 0 -180px;
+}
+#mini_menu #btn_sitemap {
+    display: block;
+    background-position: 0 0;
+    width: 21px;
+    height: 12px;
+    margin: 3px 0 0 10px;
+}
+/*GNB 반응형 ~1024px*/
+@media screen and (max-width:1024px){
+    /*메인메뉴 안보이기*/
+    #main_menu { display: none;}
+    /*헤더영역 크기 반으로*/
+    header { height: 50px;}
+    /*로고 및 메뉴들 크기,위치 조정*/
+    header #logo { top: 30%;}
+    header #logo img { width: 30px; }
+    #user_menu { top: 35%;}
+    #mini_menu { top: 35%;}
+    /*토글 사이트맵 크기 조정*/
+    #sitemap_active{
+        height: 300px;
+        padding: 0;
+    }
+    /*반응형일때 메뉴 세로 변경*/
+    #sitemap_active ul{
+        width: 100%;
+        box-sizing: border-box;
+        height: 50px;
+        border-bottom: 1px solid #eee;
+        border-right: 0;
+        line-height: 50px;
+    }
+    #sitemap_active ul:first-child {
+        border-top: 1px solid #eee;
+    }
+    /*대메뉴 제외하고 안보이게*/
+    #sitemap_active ul li, #sitemap_active ul div{
+        display: none;
+    }
+    /*대메뉴 글씨 조정*/
+    #sitemap_active ul > a{
+        font-size: 1em;
+    }
+}
+
+/* ----------footer영역---------- */
+footer{
+    background-color: #9a9999;
+    width: auto;
+    height: 200px;
+}
+#f_wrap {
+    margin: 0 auto;
+    width: 100%;
+    padding: 30px 20px 0;
+    position: relative;
+    box-sizing: border-box;
+}
+/*푸터 로고*/
+#f_logo {
+    width: auto;
+    position: absolute;
+    left: 0;
+    top: 30px;
+}
+#f_contents {
+    width: 100%;
+    height: 100px;
+    padding-left: 100px;
+    box-sizing: border-box;
+}
+#f_contents > ul > li {
+    float: left;
+    font-size: 14px;
+    padding: 0 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+/*구분점 표시*/
+#f_contents > ul > li::before {
+    content: "";
+    width: 2px;
+    height: 3px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+/*li 첫번째 메뉴 구분점, 왼쪽패딩 제거*/
+#f_contents > ul > li:nth-child(1) {
+    padding-left: 0;
+}
+#f_contents > ul > li:nth-child(1)::before {
+    width: 0;
+}
+
+#f_contents > ul > li > a {
+    color: #fff;
+}
+/*clear fix*/
+#f_contents > ul::after {
+    content: "";
+    display: block;
+    clear: left;
+}
+#f_contents > p {
+    font-size: 12px;
+    color: #555;
+}
+/*카피라이트*/
+#f_contents > p > span {
+    display: block;
+    margin-top: 10px;
+    color: #777;
+}
+/*ksnet 로고*/
+#ksnet_logo {
+    position: absolute;
+    right: 0;
+    top: 60px;
+}
+#ksnet_logo img {
+    width: 100%;
+}
+
+/*footer 반응형 ~1024px*/
+@media screen and (max-width:1024px){
+    /*푸터로고 안보이기*/
+    #f_logo { display: none;}
+    #f_wrap {
+        width: 100%;
+        height: auto;
+        padding: 20px 0 50px 0;
+        /*ksnet로고 위치때문에*/
+        position: relative;
+    }
+    footer {
+        height: auto;
+        padding: 0 0 30px
+    }
+    /*가운데 정렬*/
+    #f_contents {
+        text-align: center;
+        padding: 0;
+    }
+    /*ul 가운데 위치하기*/
+    #f_contents ul {
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /*글씨크기조절*/
+    #f_contents ul a {
+        font-size: 0.8em;
+    }
+    /*ksnet로고 위치,크기 조절*/
+    #ksnet_logo {
+        display: block;
+        top: auto;
+        left: 50%;
+        bottom: 0;
+        width: 100px;
+        margin-left: -50px;
+    }
+}
+
+/* ----------content 영역----------*/
+#content {
+    box-sizing: border-box;
+    padding: 100px 50px 30px ;
+    background-color: #fff;
+}
+
+/* 네비게이션 */
+.location {
+    margin-top: 20px;
+}
+.location > ul > li {
+    position: relative;
+    float: left;
+    height: 21px;
+    line-height: 16px;
+}
+.location > ul > li > a {
+    color: #666;
+}
+.location::after {
+    content: "";
+    display: block;
+    clear: left;
+}
+
+/*홈아이콘 넣고 글씨 안보이게 (가로크기 지정후 text-indet로 글씨 옆으로 보내고, nowrap으로 줄바꿈 안한뒤 오버플로우 히든걸어서 안보이게)*/
+.home {
+    display: inline-block;
+    background: url(../images/common/ir_icon.png);
+    background-position: -180px -30px;
+	width: 20px;
+    text-indent: 100%;
+	white-space: nowrap;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.location > ul > li + li:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: -12px;
+    width: 6px;
+    height: 11px;
+    background: url(../images/common/ir_icon.png) no-repeat -240px -30px;
+}
+/*타이틀 한글 h태그*/
+.tHan {
+    letter-spacing: -2px;
+    font-family: 'Noto Serif KR', serif;
+}
+h2 {
+    font-size: 40px;
+    margin: 50px 0 30px;
+    font-family: 'Noto Serif KR', serif;
+}
+h3 {
+    font-size: 28px;
+    font-family: 'Noto Serif KR', serif;
+}
+h4 {
+    margin: 35px 0 0;
+    font-size: 16px;
+    color: #1c1c1d;
+}
+h4:first-child {
+    margin: 0;
+}
+h5 {
+    margin: 15px 0 5px 10px;
+    font-size: 15px;
+    color: #393939;
+}
+
+/*컨텐츠 영역 반응형 ~1024px*/
+@media screen and (max-width:1024px){
+    /*네비게이션 반응형시 안보이기*/
+    .location {display: none;}
+    #content {
+        padding: 50px 3vw 3vh;
+    }
+    h2 {font-size: 1.5rem;}
+    h3 {font-size: 1rem;}
+}
+
+/* ----------아이콘 공통---------- */
+.ir {
+    background-image: url(../images/common/ir_icon.png);
+    background-repeat: no-repeat;
+    overflow: hidden;
+    text-indent: -9999px;
+    /*background-color: #fff;*/
+    cursor: pointer;
+}

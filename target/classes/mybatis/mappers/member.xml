@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- id : "JOIN 하는 POJO 클래스의 CamelCase명 또는, @Alias("키값")" -->
+<!-- type : "FROM 대상인 POJO 클래스의 CamelCase명 또는, @Alias("키값")" -->
+<!-- column : "DB 컬럼명" -->
+<!-- property: "type에 적힌 POJO클래스의 속성명" -->
+<mapper namespace="mapper.member">
+	<resultMap id="memResult" type="memberVO">
+		<result property="id" column="mem_id" />
+        <result property="pwd" column="mem_pwd" />
+        <result property="name" column="mem_name" />
+        <result property="email" column="mem_email" />
+        <result property="domain" column="mem_domain" />
+        <result property="phone" column="mem_phone" />
+        <result property="postcode" column="mem_postcode" />
+        <result property="address" column="mem_address1" />
+        <result property="detailAddress" column="mem_address2" />
+        <result property="extraAddress" column="mem_address3" />
+        <result property="emailsts" column="mem_emailsts" />
+        <result property="joinDate" column="mem_joinDate" />
+        <result property="use" column="mem_use" />
+	</resultMap> 
+	
+	<!-- 회원추가 -->
+	<insert id="insertMember"  parameterType="memberVO">
+		<![CDATA[
+		 insert into t_member(mem_id, mem_pwd, mem_name, mem_email, mem_domain, mem_phone, mem_postcode, mem_address1, mem_address2, mem_address3, mem_emailsts)
+		 values(#{id}, #{pwd}, #{name}, #{email}, #{domain}, #{phone}, #{postcode}, #{address}, #{detailAddress}, #{extraAddress}, #{emailsts})
+		]]>      
+	</insert>
+	
+	<!-- 아이디 중복확인 -->
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+	   select decode(count(*),1, 'true', 0, 'false')
+	   from t_member
+	   where mem_id = #{id}
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="memberVO"  parameterType="java.util.Map" resultMap="memResult" >
+	    <![CDATA[
+			select * from t_member
+			where mem_id = #{id} and mem_pwd = #{pwd}
+		]]>
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="searchId" parameterType="java.util.Map" resultType="memberVO" resultMap="memResult">
+		<![CDATA[
+	   		select mem_id
+	   		from t_member
+	    	where mem_name = #{name} and mem_email = #{email} and mem_domain = #{domain}					
+		]]>
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="searchPwd" parameterType="java.util.Map" resultType="memberVO" resultMap="memResult">
+		<![CDATA[
+	   		select mem_pwd
+	   		from t_member
+	    	where mem_id = #{id} and mem_name = #{name} and mem_email = #{email} and mem_domain = #{domain}					
+		]]>
+	</select>
+	
+	
+	<!-- 
+	<resultMap id="memResult" type="java.util.HashMap">
+      <result property="id" column="id" />
+      <result property="pwd" column="pwd" />
+      <result property="name" column="name" />
+      <result property="email" column="email" />
+      <result property="joinDate" column="joinDate" />
+   </resultMap> -->
+
+<!-- 
+	<select id="selectAllMemberList" resultMap="memResult">
+      <![CDATA[
+         select * from t_member	order by joinDate desc	 	
+      ]]>
+	</select>
+    
+     <insert id="insertMember"  parameterType="memberVO">
+		<![CDATA[
+		 insert into t_member(id,pwd, name, email)
+		 values(#{id}, #{pwd}, #{name}, #{email})
+		]]>      
+	</insert>
+	
+   
+   <update id="updateMember"  parameterType="memberVO">
+     <![CDATA[
+	     update t_member
+	     set pwd=#{pwd}, name=#{name}, email=#{email}
+	     where
+	     id=#{id}
+      ]]>      
+   </update> 
+     
+   <delete id="deleteMember"  parameterType="String">
+	<![CDATA[
+	   delete from  t_member
+	   where
+	   id=#{id}
+	]]>      
+  </delete>
+  <select id="loginById"  resultType="memberVO"   parameterType="memberVO" >
+	<![CDATA[
+		select * from t_member	
+		where id=#{id} and pwd=#{pwd}		
+	]]>
+  </select>
+   -->
+  
+</mapper>
